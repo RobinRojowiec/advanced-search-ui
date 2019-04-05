@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/scss/bootstrap";
+@import "./assets/fontAwesome/css/all.min.css";
+
+$shadow: None;
+
+html, body{
+  width: 100%;
+  height: auto;
+}
+
+
+.container-full{
+  max-width: 100%;
+  height: auto;
+  padding: 0px;
+
+  .col.no-padding{
+    padding: 0px;
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+
+  .container-padded{
+    padding: 30px;
+  }
+}

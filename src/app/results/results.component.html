@@ -1,0 +1,14 @@
+<div class="container" style="min-height: 200px;">
+  <div class="row">
+    <div class="col" *ngIf="!loading">
+      <p>{{results.length}} results</p>
+    </div>
+    <div class="col" *ngIf="loading" style="margin: 15px;">
+        <div class="text-center">
+            <strong>Loading...</strong>
+            <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
+          </div>
+    </div>
+  </div>
+
+</div>
