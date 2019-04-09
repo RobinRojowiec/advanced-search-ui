@@ -1,5 +1,6 @@
 export class SearchResult{
-    private score: number;
-    private title: string;
-    private highlights: [];
+    score: number;
+    title: string;
+    text: string;
+    highlights: string[];
 }

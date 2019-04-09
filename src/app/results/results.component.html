@@ -1,14 +1,51 @@
-<div class="container" style="min-height: 200px;">
+<div class="result-container">
   <div class="row">
-    <div class="col" *ngIf="!loading">
-      <p>{{results.length}} results</p>
-    </div>
     <div class="col" *ngIf="loading" style="margin: 15px;">
         <div class="text-center">
             <strong>Loading...</strong>
             <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
           </div>
     </div>
+  </div>
+  <div class="row" *ngIf="!results">
+    <div class="col">
+        <p>Please enter a query and run search to see results.</p>
+    </div>
+  </div>
+
+  <div *ngIf="results">
+
+      <div class="row">
+          <div class="col">
+            <h4>Top Answer{{results.answers.length > 1 ? "s": ""}}</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col" *ngFor="let answer of results.answers">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Answer</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Confidence: {{answer.confidence}}</h6>
+                  <p class="card-text">{{answer.text}}</p>
+                </div>
+              </div>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col" *ngIf="!loading && results">
+                <p>{{results.total}} results</p>
+              </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col" *ngFor="let result of results.results">
+                <h5>{{result.title}}</h5>
+                <i *ngFor="let highlight of result.highlights" [(innerHTML)]="highlight"></i>
+                <hr>
+              </div>
+        </div>
+
   </div>
 
 </div>

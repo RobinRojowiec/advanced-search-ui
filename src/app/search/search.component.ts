@@ -15,8 +15,13 @@ export class SearchComponent implements OnInit {
     this.searchContextService.getIsLoading().subscribe(loading => this.loading)
   }
 
-  public doSearch(){
-    if (this.searchQuery.length >= 3)
-      this.searchContextService.search(this.searchQuery)
+  public doSearch(event){
+    if (event.key === "Enter"){
+      if (this.searchQuery.length >= 3){
+        this.searchContextService.search(this.searchQuery)
+      }else{
+        this.searchContextService.abort();
+      }
+    }
   }
 }
