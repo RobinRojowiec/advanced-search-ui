@@ -41,6 +41,7 @@ export class SearchContextService {
   }
 
   public updateResults(results: SearchResults){
+    console.log(results);
     this.searchResults.next(results);
     this.isLoading.next(false);
   }

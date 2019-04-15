@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  url: "http://localhost:1234/search",
-  useMockup: true
+  url: "http://localhost:4200/search",
+  useMockup: false
 };
 
 /*
