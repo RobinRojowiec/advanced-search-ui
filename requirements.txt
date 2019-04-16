@@ -1,0 +1,5 @@
+requests
+werkzeug
+flask==1.0.2
+elasticsearch==7.0.0
+jsonpickle==1.1

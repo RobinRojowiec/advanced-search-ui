@@ -11,38 +11,49 @@ import { SearchResults } from '../model/search-results';
 export class SearchContextService {
 
   private searchResults : BehaviorSubject<SearchResults> = new BehaviorSubject(null)
+  private _answerResults: BehaviorSubject<SearchResults> = new BehaviorSubject(null);
+
   private isLoading: Subject<boolean> = new BehaviorSubject(false)
-  private searchStatus : BehaviorSubject<SearchState> = new BehaviorSubject(SearchState.NONE)
+  private isLoadingAnswer: Subject<boolean> = new BehaviorSubject(false)
 
   constructor(private searchService: SearchService) { }
 
   public search(query: string){
     this.isLoading.next(true)
-    this.searchStatus.next(SearchState.QUERY)
+    this.isLoadingAnswer.next(true)
 
-    return this.searchService.search(query).subscribe(result => this.updateResults(result) );
+    return this.searchService.search(query).subscribe(result => this.updateResults(query, result) );
   }
 
   public abort(){
     this.isLoading.next(false);
-    this.searchStatus.next(SearchState.NONE)
-  }
-
-  public getSearchState(): Observable<SearchState>{
-    return this.searchStatus.asObservable();
+    this.isLoadingAnswer.next(false);
   }
 
   public getIsLoading(): Observable<boolean>{
     return this.isLoading.asObservable();
   }
 
+  public getIsLoadingAnswer(): Observable<boolean>{
+    return this.isLoadingAnswer.asObservable();
+  }
+
   public getSearchResults(): Observable<SearchResults>{
     return this.searchResults.asObservable()
   }
 
-  public updateResults(results: SearchResults){
-    console.log(results);
+  public getAnswerResults(): Observable<SearchResults> {
+    return this._answerResults.asObservable();
+  }
+
+  public updateResults(query: string, results: SearchResults){
     this.searchResults.next(results);
     this.isLoading.next(false);
+
+    this.searchService.get_answer(query, results[0]['text']).subscribe(answer => {
+      console.log(answer)
+      this._answerResults.next(answer);
+      this.isLoadingAnswer.next(false)
+    });
   }
 }

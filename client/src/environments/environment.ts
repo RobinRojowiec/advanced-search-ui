@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   url: "http://localhost:4200/search",
+  url2: "http://localhost:4200/get_answer",
   useMockup: false
 };
 

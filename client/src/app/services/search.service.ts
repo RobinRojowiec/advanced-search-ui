@@ -10,6 +10,8 @@ import { SearchResults } from '../model/search-results';
 })
 export class SearchService {
   private url: String = environment.url;
+  private url2: String = environment.url2;
+
   private isMockResponse: boolean = environment.useMockup;
   private mockResponse = new BehaviorSubject<SearchResults>({
     "answers":[{"text":"test answer","confidence":0.9}, {"text":"test answer 2","confidence":0.9}],
@@ -22,5 +24,11 @@ export class SearchService {
     if (this.isMockResponse)
       return this.mockResponse.asObservable();
     return this.http.get<SearchResults>(this.url+"?query="+encodeURIComponent(text));
+  }
+
+  public get_answer(query: string, context: string){
+    if (this.isMockResponse)
+      return this.mockResponse.asObservable();
+    return this.http.get<SearchResults>(this.url2+"?query="+encodeURIComponent(query)+"&context="+encodeURIComponent(context));
   }
 }

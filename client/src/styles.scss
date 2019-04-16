@@ -9,8 +9,23 @@ html, body{
   height: auto;
 }
 
-em {
-  font-weight: bold;
+img.center{
+  width: auto;
+  height: 200px;
+  display: inline-block;
+}
+
+p.highlight{
+  color: gray;
+  font-size: 0.9rem;
+  em {
+    font-weight: bold;
+  }
+}
+
+div.answer{
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .container-full{

@@ -1,0 +1,12 @@
+{
+  "properties": {
+    "title": {
+      "type": "text",
+      "analyzer": "english"
+    },
+    "text": {
+      "type": "text",
+      "analyzer": "english"
+    }
+  }
+}

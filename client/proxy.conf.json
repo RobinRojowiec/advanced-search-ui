@@ -2,5 +2,9 @@
   "/search": {
     "target": "http://localhost:1200",
     "secure": false
+  },
+  "/get_answer": {
+    "target": "http://localhost:1200",
+    "secure": false
   }
 }
